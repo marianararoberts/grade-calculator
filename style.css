@@ -1,0 +1,21 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.header {
+    font-weight: 500;
+    padding: 2.15rem 0;
+    background: #40cd92;
+    margin: 0;
+    text-align: center;
+    font-size:42px;
+}
+
+h2 {
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+    font-size: 26px;
+}
