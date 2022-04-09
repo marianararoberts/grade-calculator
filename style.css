@@ -103,7 +103,7 @@ h3 {
 }
 
 .grid-rows {
-    background-color: #d0d8e7;
+    background-color: #bec4ce;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -115,7 +115,7 @@ h3 {
     text-align: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
+    grid-gap: 10px;
 }
 
 .grid-rug {
