@@ -6,10 +6,10 @@ body {
 .header {
     font-weight: 500;
     padding: 2.15rem 0;
-    background: #40cd92;
+    background: #4D96FF;
     margin: 0;
     text-align: center;
-    font-size:42px;
+    font-size: 42px;
 }
 
 h2 {
@@ -19,3 +19,136 @@ h2 {
     margin-top: 20px;
     font-size: 26px;
 }
+
+.start {
+    text-align: center;
+    margin: 20px;
+}
+
+.start-button {
+    background: #FFD93D;
+    margin: 0;
+    font-size: 35px;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    border: 0;
+}
+
+.start-button:hover {
+    background-color: #6BCB77;
+    cursor: pointer;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.header {
+    font-weight: 500;
+    padding: 2.15rem 0;
+    background: #4D96FF;
+    margin: 0;
+    text-align: center;
+    font-size: 42px;
+}
+
+h2 {
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+    font-size: 26px;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.start {
+    text-align: center;
+    margin: 20px;
+}
+
+.start-button {
+    background: #FFD93D;
+    margin: 0;
+    font-size: 35px;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    border: 0;
+}
+
+.start-button:hover {
+    background-color: #6BCB77;
+    cursor: pointer;
+}
+
+
+.grid {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0px;
+    grid-auto-rows: minmax(50px, auto);
+}
+.grid-elm {
+    font-size: 20px;
+}
+
+.grid-rows {
+    background-color: #d0d8e7;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px; 
+}
+
+.grid-rg {
+    font-size: 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+.grid-rug {
+    font-size: 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+.grade-button {
+    margin-top: 25px; 
+    margin-left: 15px;
+    border: 0;
+    font-size: 20px;
+}
+
+.grade-button:hover {
+    background-color: #939baa;
+    cursor: pointer;
+}
+
+
+.footer {
+    display: grid;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #4D96FF;
+    color: white;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
