@@ -33,7 +33,8 @@ btn.addEventListener("click", function () {
         ungradedAHeader.innerHTML = "Ungraded Assignments";
         btn.style = "display: none;"
         nextBtn.style = "";
-
+        var heading = document.getElementById("heading");
+        heading.style = "display: none;"
     }
 });
 
