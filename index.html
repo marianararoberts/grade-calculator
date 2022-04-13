@@ -32,31 +32,48 @@
             </div>
         </div>
         <div class="item">
-            <h2 id="classHeader">Enter the name of the class you'd like to calculate for:</h2>
-            <div id="new"></div>
-            <div style="display: none;" id="pointBox">
-                <input type="number" id="earned" class="box" min="0" style="font-size: 20px; width: 65px;
+            <div id="hideCalc">
+                <h2 id="classHeader">Enter the name of the class you'd like to calculate for:</h2>
+                <div id="new"></div>
+                <span id="hideAvg">
+                    <div style="display: none;" id="pointBox">
+                        <input type="number" id="earned" class="box" min="0" style="font-size: 20px; width: 65px;
                 height: 30px;">
-                <span style="font-size: 25px">/</span>
-                <input type="number" id="total" class="box" min="0"style="font-size: 20px; width: 65px;
+                        <span style="font-size: 25px">/</span>
+                        <input type="number" id="total" class="box" min="0" style="font-size: 20px; width: 65px;
                 height: 30px;">
+                    </div>
+                    <br>
+                    <div id="testElm" style="text-align: center;">
+                        <input type="text" id="className" value=" " class="box">
+                    </div>
             </div>
-            <br>
-            <div id="testElm" style="text-align: center;">
-                <input type="text" id="className" value=" " class="box">
-            </div>
+            </span>
             <div style="text-align: center">
-                <button id="nextBtn2" class="btn" style="display: none;">Next</button>
+                <div id="hideCalc2">
+                    <button id="nextBtn2" class="btn" style="display: none;">Next</button>
+                    <br>
+                    <button id="nextBtn" class="btn">Next</button>
+                    <button id="ugBtn" class="btn" style="display: none;">Next</button>
+                    <br>
+                    <button id="doneBtn" class="btn" style="display: none;">Done</button>
+                </div>
+                <input type="number" id="goalAvg" class="box" min="1" max="100" style="display:none;">
+                <span id="per" style="display:none;" >%</span>
                 <br>
-                <button id="nextBtn" class="btn" >Next</button>
-                <button id="ugBtn" class="btn" style="display: none;" >Next</button>
+                <button class="btn" id="calcBtn" style="display: none">Calculate</button>
             </div>
         </div>
         <div class="item">
             <h2 id="unGradedA"></h2>
+            <div id="gRow" class='row'>
+                <div class='column'>
+                    <div id='point-ug'>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="footer">
         <p></p>
         <p></p>
