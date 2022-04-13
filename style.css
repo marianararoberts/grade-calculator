@@ -134,20 +134,6 @@ h3 {
     cursor: pointer;
 }
 
-
-.footer {
-    display: grid;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #4D96FF;
-    color: white;
-    text-align: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-}
-
 .container {
     display: flex;
 }
@@ -179,4 +165,21 @@ h3 {
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
+}
+
+.small {
+    font-size: 22px;
+}
+
+.footer {
+    display: grid;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #4D96FF;
+    color: white;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
 }

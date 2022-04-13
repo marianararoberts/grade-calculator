@@ -16,17 +16,54 @@
 
 <body>
     <h1 class="header">Grade Calculator</h1>
-    <h2>Welcome to the first Official Grade Calculator!</h2>
-    <h2 style="margin-top: 5px;">Calculate your grades with ease.</h2>
-    <br>
-    <div class="start"> <button class="start-button" onclick="window.location.href='calc.html'">Start</button></div>
+    <h2>Welcome to the Official Grade Calculator!<br>Calculate your grades with ease.</h2>
+    <div class="container">
+        <div class="item">
+            <h2 id="gradedA"></h2>
+            <div id="gRow" class='row' style="display: none;">
+                <div class='column'>
+                    <div id='point-col'>
+                    </div>
+                </div>
+                <div class='column'>
+                    <div id='percent-col'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <h2 id="classHeader">Enter the name of the class you'd like to calculate for:</h2>
+            <div id="new"></div>
+            <div style="display: none;" id="pointBox">
+                <input type="number" id="earned" class="box" min="0" style="font-size: 20px; width: 65px;
+                height: 30px;">
+                <span style="font-size: 25px">/</span>
+                <input type="number" id="total" class="box" min="0"style="font-size: 20px; width: 65px;
+                height: 30px;">
+            </div>
+            <br>
+            <div id="testElm" style="text-align: center;">
+                <input type="text" id="className" value=" " class="box">
+            </div>
+            <div style="text-align: center">
+                <button id="nextBtn2" class="btn" style="display: none;">Next</button>
+                <br>
+                <button id="nextBtn" class="btn" >Next</button>
+                <button id="ugBtn" class="btn" style="display: none;" >Next</button>
+            </div>
+        </div>
+        <div class="item">
+            <h2 id="unGradedA"></h2>
+        </div>
+    </div>
 
     <div class="footer">
-        <p>FAQ</p>
-        <p>Contact Me</p>
+        <p></p>
+        <p></p>
         <p style="text-align: right; margin-right: 15px">Copyright © 2022 Maria Roberts</p>
     </div>
     <script src="script.js"></script>
 </body>
+
 
 </html>

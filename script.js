@@ -44,6 +44,8 @@ btn2.addEventListener("click", function () {
     else {
         var valElm = document.createElement("h2");
         var percentElm = document.createElement("h2");
+        valElm.classList.add("small");
+        percentElm.classList.add("small");
         var textElm = document.createTextNode(earnedBox.value + "/" + totalBox.value);
         var percent = document.createTextNode(((earnedBox.value / totalBox.value) * 100).toFixed(1) + "%");
         valElm.appendChild(textElm);
@@ -53,11 +55,11 @@ btn2.addEventListener("click", function () {
         earnedBox.value = "";
         totalBox.value = "";
     }
-    // change text for tag element
-    // maybe add boolean: if true, add to graded, if false, add to ungraded: option to go back back button should appear next to the next button once you click next
 });
 
 nextBtn.addEventListener("click", function () {
-    
+    // change to ungraded, change text for tag elm
+    // switch btn to modify ungraded,  
+    // maybe add boolean: if true, add to graded, if false, add to ungraded: option to go back back button should appear next to the next button once you click next
 });
 // window.open('calc.html', '_parent');
