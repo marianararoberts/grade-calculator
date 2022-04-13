@@ -11,10 +11,11 @@ btn.addEventListener("click", function () {
         cHeader.innerHTML = className;
         var tag = document.createElement("h3");
         tag.style = "text-align: center";
-        var text = document.createTextNode("Enter the graded assignment point values for "+ className + ":");
+        var text = document.createTextNode("Enter the graded assignment point values for "+ className.trim() + ":");
         tag.appendChild(text);
         var element = document.getElementById("new");
         element.appendChild(tag);
+        nextBtn.innerHTML = "Add Assignment";
     }
 });
 // window.open('calc.html', '_parent');
