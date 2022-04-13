@@ -6,7 +6,15 @@ btn.addEventListener("click", function () {
         alert("Enter the class name!");
     }
     else {
-        window.open('calc.html', '_parent');
+        const tempElm = document.getElementById("testElm");
+        tempElm.remove();
+        cHeader.innerHTML = className;
+        var tag = document.createElement("h3");
+        tag.style = "text-align: center";
+        var text = document.createTextNode("Enter the graded assignment point values for "+ className + ":");
+        tag.appendChild(text);
+        var element = document.getElementById("new");
+        element.appendChild(tag);
     }
 });
-
+// window.open('calc.html', '_parent');
