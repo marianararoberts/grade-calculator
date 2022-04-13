@@ -19,17 +19,36 @@
     <div class="container">
         <div class="item">
             <h2 id="gradedA"></h2>
+            <div id="gRow" class='row' style="display: none;">
+                <div class='column'>
+                    <div id='point-col'>
+                    </div>
+                </div>
+                <div class='column'>
+                    <div id='percent-col'>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="item">
             <h2 id="classHeader">Enter the name of the class you'd like to calculate for:</h2>
             <div id="new"></div>
+            <div style="display: none;" id="pointBox">
+                <input type="number" id="earned" class="box" min="0" style="font-size: 20px; width: 65px;
+                height: 30px;">
+                <span style="font-size: 25px">/</span>
+                <input type="number" id="total" class="box" min="0"style="font-size: 20px; width: 65px;
+                height: 30px;">
+            </div>
             <br>
             <div id="testElm" style="text-align: center;">
-                <input type="text" id="className" value=" "
-                    style="font-size: 30px; text-align: center; font-family: 'Open Sans', sans-serif;">
+                <input type="text" id="className" value=" " class="box">
             </div>
             <div style="text-align: center">
-                <button id="nextBtn">Next</button>
+                <button id="nextBtn2" class="btn" style="display: none;">Next</button>
+                <br>
+                <button id="nextBtn" class="btn" >Next</button>
+                <button id="ugBtn" class="btn" style="display: none;" >Next</button>
             </div>
         </div>
         <div class="item">
@@ -44,5 +63,6 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 
 </html>

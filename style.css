@@ -86,13 +86,19 @@ h3 {
     border: 0;
 }
 
+.box {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .start-button:hover,
-#nextBtn:hover {
+.btn:hover {
     background-color: #6BCB77;
     cursor: pointer;
 }
 
-#nextBtn {
+.btn {
     background: #FFD93D;
     margin-top: 10px;
     font-size: 20px;
@@ -153,4 +159,24 @@ h3 {
 
 .item+.item {
     margin-left: 2%;
+}
+
+.some-page-wrapper {
+    margin: 15px;
+    background-color: red;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
 }
