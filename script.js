@@ -16,6 +16,10 @@ btn.addEventListener("click", function () {
         var element = document.getElementById("new");
         element.appendChild(tag);
         nextBtn.innerHTML = "Add Assignment";
+        var gradedAHeader = document.getElementById("gradedA");
+        gradedAHeader.innerHTML = "Graded Assignments";
+        var ungradedAHeader = document.getElementById("unGradedA");
+        ungradedAHeader.innerHTML = "Ungraded Assignments";
     }
 });
 // window.open('calc.html', '_parent');

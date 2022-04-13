@@ -41,6 +41,7 @@ h2 {
     background-color: #6BCB77;
     cursor: pointer;
 }
+
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -85,7 +86,8 @@ h3 {
     border: 0;
 }
 
-.start-button:hover, #nextBtn:hover {
+.start-button:hover,
+#nextBtn:hover {
     background-color: #6BCB77;
     cursor: pointer;
 }
@@ -109,12 +111,13 @@ h3 {
     grid-gap: 0px;
     grid-auto-rows: minmax(50px, auto);
 }
+
 .grid-elm {
     font-size: 20px;
 }
 
 .grade-button {
-    margin-top: 25px; 
+    margin-top: 25px;
     margin-left: 15px;
     border: 0;
     font-size: 20px;
@@ -139,3 +142,15 @@ h3 {
     grid-gap: 20px;
 }
 
+.container {
+    display: flex;
+}
+
+.item {
+    flex-grow: 1;
+    height: 100px;
+}
+
+.item+.item {
+    margin-left: 2%;
+}
