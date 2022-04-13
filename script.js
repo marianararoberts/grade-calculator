@@ -2,12 +2,11 @@ var btn = document.getElementById("nextBtn");
 var cHeader = document.getElementById("classHeader");
 btn.addEventListener("click", function () {
     var className = document.getElementById("className").value;
-    if (className != " ") {
-        // open calc.html
+    if (className == " ") {
+        alert("Enter the class name!");
     }
     else {
-        // innerHTML = "Enter something!"
+        window.open('calc.html', '_parent');
     }
 });
 
-// onload change cHeader.innerHTML to className
