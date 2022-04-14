@@ -49,6 +49,10 @@ var text5;
 var ugTotal = 0;
 var assignmentCategories = [];
 var assignmentPercentages = [];
+var assignmentEarned = [];
+var assignmentTotal = [];
+var avgArr = [];
+var weightedAvgArr = [];
 var divElm = document.createElement("div");
 function validate() {
     if (document.getElementById('weightedBox').checked) {
@@ -83,7 +87,7 @@ weightedBtn.addEventListener("click", function () {
         weightedName.appendChild(category);
         weightPer.appendChild(weight);
         assignmentCategories.push(assName);
-        assignmentPercentages.push(percent);
+        assignmentPercentages.push(percent / 100);
         percentWeight.value = ""
         assignmentName.value = "";
     }
@@ -102,9 +106,11 @@ btn.addEventListener("click", function () {
         if (weightedBox.checked) {
             for (var i = 0; i < assignmentCategories.length; i++) {
                 var newCat = document.createElement("option");
-                newCat.value = assignmentCategories[i];
+                newCat.value = i;
                 newCat.innerHTML = assignmentCategories[i];
                 categoriesDropDown.appendChild(newCat);
+                assignmentEarned.push(0);
+                assignmentTotal.push(0);
             }
             weightedColumn.style = "";
             weightedColumn2.style = "";
@@ -159,25 +165,48 @@ btn2.addEventListener("click", function () {
     }
     else {
         if (earnedBox.disabled) {
+            if (weightedBox.checked) {
+                var weightedElm = document.createElement("h2");
+                var weightedTextElm = document.createTextNode(categoriesDropDown.value);
+                weightedElm.appendChild(weightedTextElm);
+                weightedType2.appendChild(weightedElm);
+            }
             ugTotal += parseInt(totalBox.value);
             var pointElm = document.createElement("h2");
             var ugTextElm = document.createTextNode(earnedBox.value + "/" + totalBox.value);
             pointElm.appendChild(ugTextElm);
             unGradedVal.appendChild(pointElm);
             totalBox.value = "";
-            if (weightedBox.checked) {
-                var weightedElm = document.createElement("h2");
-                var weightedTextElm = document.createTextNode(categoriesDropDown.value);
-                weightedElm.classList.add("small");
-                weightedElm.appendChild(weightedTextElm);
-                weightedType2.appendChild(weightedElm);
-            }
         }
         else {
-            gEarned += parseInt(earnedBox.value);
-            gTotal += parseInt(totalBox.value);
-            avg = ((gEarned / gTotal) * 100).toFixed(1);
-            cHeader.innerHTML = "Current " + className + " Average: " + avg + "%";
+            if (weightedBox.checked) {
+                var selectedCat = categoriesDropDown.value;
+                assignmentEarned[selectedCat] += parseInt(earnedBox.value);
+                assignmentTotal[selectedCat] += parseInt(totalBox.value);
+                var weightedElm = document.createElement("h2");
+                var weightedTextElm = document.createTextNode(assignmentCategories[selectedCat]);
+                weightedElm.classList.add("small");
+                weightedElm.appendChild(weightedTextElm);
+                weightedType.appendChild(weightedElm);
+                var newAvg = 0;
+                var perTotal = 0;
+                for (let i = 0; i < assignmentTotal.length; i++) {
+                    avgArr[i] = (assignmentEarned[i] / assignmentTotal[i]) * 100;
+                }
+                for (let i = 0; i < avgArr.length; i++) {
+                    weightedAvgArr[i] = avgArr[i] * assignmentPercentages[i];
+                    if (!Number.isNaN(weightedAvgArr[i])) {
+                        newAvg += weightedAvgArr[i];
+                        perTotal += assignmentPercentages[i];
+                    }
+                }
+                avg = (newAvg / perTotal).toFixed(1);
+            }
+            else {
+                gEarned += parseInt(earnedBox.value);
+                gTotal += parseInt(totalBox.value);
+                avg = ((gEarned / gTotal) * 100).toFixed(1);
+            }
             var valElm = document.createElement("h2");
             var percentElm = document.createElement("h2");
             valElm.classList.add("small");
@@ -190,13 +219,7 @@ btn2.addEventListener("click", function () {
             gradedPer.appendChild(percentElm);
             earnedBox.value = "";
             totalBox.value = "";
-            if (weightedBox.checked) {
-                var weightedElm = document.createElement("h2");
-                var weightedTextElm = document.createTextNode(categoriesDropDown.value);
-                weightedElm.classList.add("small");
-                weightedElm.appendChild(weightedTextElm);
-                weightedType.appendChild(weightedElm);
-            }
+            cHeader.innerHTML = "Current " + className + " Average: " + avg + "%";
         }
     }
 });
