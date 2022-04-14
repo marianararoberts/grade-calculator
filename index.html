@@ -21,14 +21,45 @@
     <h2 id="heading">Welcome to the Official Grade Calculator!<br>Calculate your grades with ease.</h2>
     <div class="container">
         <div class="item" style="margin-left: 10px;">
+            <!-- if showing, flex-grow for .item needed to be 0.24, else, 1 -->
+            <div class="center" id="weightedCategoriesDiv" style="display: none;">
+                <h2 style="margin-bottom: 10px">Weighted Categories</h2>
+                <div>
+                    <input type="text" id="assignmentName"
+                        style="height: 25px; width: 170px; font-size: 20px; font-family: 'Open Sans', sans-serif;"
+                        class="center">
+                    <input type="number" id="perWeight" class="box" min="0" style="font-size: 20px; width: 55px;
+                height: 25px;"> %
+                </div>
+                <button class="btn" style="font-size: 18px" id="addWeighted">Add</button>
+                <div id="weightedAssignmentRow" class='row'>
+                    <div class='column'>
+                        <div id='assignment-col'>
+                        </div>
+                    </div>
+                    <div class='column'>
+                        <div id='weight-col'>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style="display: inline">
+                    <div style="text-align: left; margin-left: 30px" id="weightedCategories">
+                        <h3>Homework</h3>
+                    </div>
+                </div> -->
+            </div>
             <h2 id="gradedA"></h2>
             <div id="gRow" class='row' style="display: none;">
+                <div class='column' id="weightedColumn" style="display:none;">
+                    <div id='weighted-col'>
+                    </div>
+                </div>
                 <div class='column'>
                     <div id='point-col'>
                     </div>
                 </div>
                 <div class='column'>
-                    <div id='percent-col'>
+                    <div id='percent-col'> 
                     </div>
                 </div>
             </div>
@@ -37,7 +68,7 @@
             <div id="hideCalc">
                 <h2 id="classHeader">Enter the name of the class you'd like to calculate for:</h2>
                 <div id="new"></div>
-                <div style="text-align: center;">
+                <div class="center">
                     <button class="btn" id="backBtn" style="display: none">Back</button>
                 </div>
                 <span id="hideAvg">
@@ -49,12 +80,17 @@
                 height: 30px;">
                     </div>
                     <br>
-                    <div id="testElm" style="text-align: center;">
+                    <div id="testElm" class="center">
                         <input type="text" id="className" value=" " class="box">
                     </div>
             </div>
+            <div class="center" id="weightedOptionDiv" style="display: none;">
+                <select id="categoriesDropDown">
+                    
+                </select>
+            </div>
             </span>
-            <div style="text-align: center">
+            <div class="center">
                 <div id="hideCalc2">
                     <button id="nextBtn2" class="btn" style="display: none;">Next</button>
                     <br>
@@ -68,10 +104,21 @@
                 <br>
                 <button class="btn" id="calcBtn" style="display: none">Calculate</button>
             </div>
+            <div id="weightedBoxDiv">
+                <input type="checkbox" id="weightedBox" onclick="validate()">
+                Weighted
+                <br>
+                <h3 style="display:none;" id="instructions">Add all assignment categories and their weighted percentages
+                    to the left.</h3>
+            </div>
         </div>
         <div class="item" style="margin-right: 10px;">
             <h2 id="unGradedA"></h2>
             <div id="gRow" class='row'>
+                <div class='column' id="weightedColumn2" style="display:none;">
+                    <div id='ugweighted-col'>
+                    </div>
+                </div>
                 <div class='column'>
                     <div id='point-ug'>
                     </div>
