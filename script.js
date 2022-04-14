@@ -130,9 +130,13 @@ doneBtn.addEventListener("click", function () {
 });
 
 calcBtn.addEventListener("click", function () {
+    // math
+    var x = (avg/100)*(gTotal+ugTotal);
+    var ugNeeded = x - gEarned;
+
     calcBtn.style = "display: none";
     percent.style = "display: none";
-    text4 = document.createTextNode("In order to achieve a " + percentBox.value + "% in " + className.trim() + ", you must earn "+ ugTotal +" points out of the " + ugTotal + " points in ungraded assignments.");
+    text4 = document.createTextNode("In order to achieve a " + percentBox.value + "% in " + className.trim() + ", you must earn "+ ugNeeded.toFixed(1) +" points out of the " + ugTotal + " points in ungraded assignments.");
     tag2.appendChild(text4);
     element.appendChild(tag2);
     element.removeChild(tag);
