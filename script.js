@@ -19,6 +19,7 @@ var hideDiv2 = document.getElementById("hideCalc2");
 var hideAvg = document.getElementById("hideAvg");
 var percent = document.getElementById("per");
 var percentBox = document.getElementById("goalAvg");
+var backBtn = document.getElementById("backBtn");
 var className;
 var avg;
 var gTotal = 0;
@@ -140,5 +141,19 @@ calcBtn.addEventListener("click", function () {
     element.appendChild(tag2);
     element.removeChild(tag);
     percentBox.style = "display: none";
+    backBtn.style = "";
     // possibly add you were x points away from an A, A-, B+, B-, etc
+});
+
+
+backBtn.addEventListener("click", function () {
+    element.appendChild(tag);
+    element.removeChild(tag2);
+    tag.removeChild(text3);
+    tag.appendChild(text2);
+    tag2.removeChild(text4);
+    doneBtn.style = "";
+    backBtn.style = "display: none";
+    hideDiv2.style = "";
+    hideAvg.style = "";
 });
