@@ -164,10 +164,11 @@ btn2.addEventListener("click", function () {
         alert("Enter the point values as they appear in PowerSchool! Both boxes should be filled.")
     }
     else {
+        var selectedCat = categoriesDropDown.value;
         if (earnedBox.disabled) {
             if (weightedBox.checked) {
                 var weightedElm = document.createElement("h2");
-                var weightedTextElm = document.createTextNode(categoriesDropDown.value);
+                var weightedTextElm = document.createTextNode(assignmentCategories[selectedCat]);
                 weightedElm.appendChild(weightedTextElm);
                 weightedType2.appendChild(weightedElm);
             }
@@ -180,7 +181,6 @@ btn2.addEventListener("click", function () {
         }
         else {
             if (weightedBox.checked) {
-                var selectedCat = categoriesDropDown.value;
                 assignmentEarned[selectedCat] += parseInt(earnedBox.value);
                 assignmentTotal[selectedCat] += parseInt(totalBox.value);
                 var weightedElm = document.createElement("h2");
