@@ -131,8 +131,7 @@ doneBtn.addEventListener("click", function () {
 
 calcBtn.addEventListener("click", function () {
     // math
-    var x = (percentBox.value/100)*(gTotal+ugTotal);
-    var ugNeeded = x - gEarned;
+    var ugNeeded = ((percentBox.value/100)*(gTotal+ugTotal)) - gEarned;
 
     calcBtn.style = "display: none";
     percent.style = "display: none";
