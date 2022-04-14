@@ -131,7 +131,7 @@ doneBtn.addEventListener("click", function () {
 
 calcBtn.addEventListener("click", function () {
     // math
-    var x = (avg/100)*(gTotal+ugTotal);
+    var x = (percentBox.value/100)*(gTotal+ugTotal);
     var ugNeeded = x - gEarned;
 
     calcBtn.style = "display: none";
@@ -141,4 +141,5 @@ calcBtn.addEventListener("click", function () {
     element.appendChild(tag2);
     element.removeChild(tag);
     percentBox.style = "display: none";
+    // possibly add you were x points away from an A, A-, B+, B-, etc
 });
