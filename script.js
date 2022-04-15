@@ -173,9 +173,9 @@ btn2.addEventListener("click", function () {
                 var weightedTextElm = document.createTextNode(assignmentCategories[selectedCat]);
                 weightedElm.appendChild(weightedTextElm);
                 weightedType2.appendChild(weightedElm);
-                ugTotalArr[selectedCat] += parseInt(totalBox.value);
+                ugTotalArr[selectedCat] += Number(totalBox.value);
             }
-            ugTotal += parseInt(totalBox.value);
+            ugTotal += Number(totalBox.value);
             var pointElm = document.createElement("h2");
             var ugTextElm = document.createTextNode(earnedBox.value + "/" + totalBox.value);
             pointElm.appendChild(ugTextElm);
@@ -184,8 +184,8 @@ btn2.addEventListener("click", function () {
         }
         else {
             if (weightedBox.checked) {
-                assignmentEarned[selectedCat] += parseInt(earnedBox.value);
-                assignmentTotal[selectedCat] += parseInt(totalBox.value);
+                assignmentEarned[selectedCat] += Number(earnedBox.value);
+                assignmentTotal[selectedCat] += Number(totalBox.value);
                 var weightedElm = document.createElement("h2");
                 var weightedTextElm = document.createTextNode(assignmentCategories[selectedCat]);
                 weightedElm.classList.add("small");
@@ -194,8 +194,8 @@ btn2.addEventListener("click", function () {
                 var newAvg = 0;
                 var perTotal = 0;
                 for (let i = 0; i < assignmentTotal.length; i++) {
-                    var num = roundFunc2(assignmentEarned[i] / assignmentTotal[i]);
-                    avgArr[i] = num * 100;
+                    var num = roundFunc3(assignmentEarned[i] / assignmentTotal[i]);
+                    avgArr[i] = roundFunc1(num * 100);
                     console.log(avgArr[i]);
                 }
                 for (let i = 0; i < avgArr.length; i++) {
@@ -209,8 +209,8 @@ btn2.addEventListener("click", function () {
                 avg = Math.round(Number((newAvg / perTotal)) * 10) / 10;
             }
             else {
-                gEarned += parseInt(earnedBox.value);
-                gTotal += parseInt(totalBox.value);
+                gEarned += Number(earnedBox.value);
+                gTotal += Number(totalBox.value);
                 avg = Math.round(Number((gEarned / gTotal) * 100) * 10) / 10;
             }
             var valElm = document.createElement("h2");
@@ -230,9 +230,9 @@ btn2.addEventListener("click", function () {
     }
 });
 
-function findPercentage(x, y) {
-    var total = assignmentTotal[x] + y;
-    var earned = assignmentEarned[x] + y;
+function findPercentage(x) {
+    var total = assignmentTotal[x] + ugTotalArr[x];
+    var earned = assignmentEarned[x] + ugTotalArr[x];
     var average = ((earned / total) * 100) * assignmentPercentages[x];
     return average;
 }
@@ -253,17 +253,16 @@ function findPoints(x, y) {
     var goalAvg = roundFunc3(roundFunc2(y / assignmentPercentages[x]) / 100)
     var earned = assignmentEarned[x];
     var total = assignmentTotal[x] + ugTotalArr[x];
-    var points = (goalAvg * total).toFixed(1);
+    var points = roundFunc1(goalAvg * total);
     var neededPoints = roundFunc1(points - earned);
-    // rounding to the 3rd is too exact sometimes, make it round to whatever place goalAvg is roaded to
-    if (roundFunc3((Number(neededPoints) + Number(earned)) / Number(total)) == goalAvg)
-        console.log(neededPoints + ": Needed Points");
     console.log(goalAvg + ": Goal Average");
     console.log(points + ": Goal Points");
     console.log(earned + ": Earned Points");
     console.log(total + ": Final Total Points");
     console.log((Number(neededPoints) + Number(earned)) + ": Needed+Earned");
     console.log(roundFunc2((Number(neededPoints) + Number(earned)) / Number(total)) + ": Actual Average");
+    console.log(neededPoints + ": Needed Points");
+    return Number(neededPoints);
 }
 
 nextBtn.addEventListener("click", function () {
@@ -307,19 +306,26 @@ doneBtn.addEventListener("click", function () {
 });
 
 calcBtn.addEventListener("click", function () {
-    // math
-    var ugNeeded;
+    var ugNeeded = 0;
+    var weightTotal = 0;
+    var pTotal = 0;
     if (weightedBox.checked) {
-        ugNeeded = 1;
+        ugNeeded = getNeeded(percentBox.value);
+        ugTotalArr.forEach(element => {
+            weightTotal+= element;
+        });
+        console.log(weightTotal);
+        pTotal = weightTotal;
     }
     else {
         ugNeeded = ((percentBox.value / 100) * (gTotal + ugTotal)) - gEarned;
+        pTotal = ugTotal;
     }
 
     calcBtn.style = "display: none";
     percent.style = "display: none";
     text4 = document.createTextNode("In order to achieve a " + percentBox.value + "% in " + className.trim() + ",");
-    text5 = document.createTextNode("you must earn " + ugNeeded.toFixed(1) + " points out of the " + ugTotal + " points in ungraded assignments.");
+    text5 = document.createTextNode("you must earn " + roundFunc1(ugNeeded) + " points out of the " + pTotal + " points in ungraded assignments.");
     tag2.appendChild(text4);
     tag2.appendChild(divElm);
     tag2.appendChild(text5);
@@ -353,6 +359,7 @@ function findCombos(arr1, arr2, n, m, z) {
                 console.log(arr1[i] + " + " + arr2[j] + " = " + z);
 }
 
+
 function createArr(x, y, z) {
     let arr1 = [];
     let arr2 = [];
@@ -363,4 +370,29 @@ function createArr(x, y, z) {
         arr2.push(i.toFixed(1));
     }
     findCombos(arr1, arr2, arr1.length, arr2.length, z);
+}
+
+function getNeeded(test) {
+    var ugNums = [];
+    var gNums = [];
+    var tx = 0;
+    var tt = 0;
+    for (let i = 0; i < ugTotalArr.length; i++) {
+        if (ugTotalArr[i] > 0) {
+            ugNums[tx] = i;
+            tx++;
+        }
+        else {
+            gNums[tt] = i;
+            tt++;
+        }
+    }
+    if (ugNums.length == 1) {
+        var sAvg = test - (avg - weightedAvgArr[ugNums[0]]);
+        return findPoints(ugNums[0], sAvg);
+    }
+    else {
+        var sAvg = goalAvg - (weightedAvgArr[gNums[0]] + weightedAvgArr[gNums[1]]);
+        createArr(findPercentage(ugNums[0]), findPercentage(ugNums[1]), sAvg);
+    }
 }
