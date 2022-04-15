@@ -60,7 +60,7 @@ function validate() {
         weightedCategoriesDiv.style = "";
         instructions.style = "";
         for (var i = 0; i < elements.length; i++) {
-            elements[i].style.flexGrow = "0.234";
+            elements[i].style.flexGrow = "0.236";
         }
         // give option to add assignments and weighting
     } else {
