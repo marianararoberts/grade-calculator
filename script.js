@@ -309,13 +309,16 @@ calcBtn.addEventListener("click", function () {
     var ugNeeded = 0;
     var weightTotal = 0;
     var pTotal = 0;
+    var str = " points in ungraded assignments.";
+    var ugStr = " points in ungraded " + assignmentCategories[getUgNum()] + " assignments.";
     if (weightedBox.checked) {
         ugNeeded = getNeeded(percentBox.value);
         ugTotalArr.forEach(element => {
-            weightTotal+= element;
+            weightTotal += element;
         });
         console.log(weightTotal);
         pTotal = weightTotal;
+        str = ugStr;
     }
     else {
         ugNeeded = ((percentBox.value / 100) * (gTotal + ugTotal)) - gEarned;
@@ -325,7 +328,7 @@ calcBtn.addEventListener("click", function () {
     calcBtn.style = "display: none";
     percent.style = "display: none";
     text4 = document.createTextNode("In order to achieve a " + percentBox.value + "% in " + className.trim() + ",");
-    text5 = document.createTextNode("you must earn " + roundFunc1(ugNeeded) + " points out of the " + pTotal + " points in ungraded assignments.");
+    text5 = document.createTextNode("you must earn " + roundFunc1(ugNeeded) + " points out of the " + pTotal + str);
     tag2.appendChild(text4);
     tag2.appendChild(divElm);
     tag2.appendChild(text5);
@@ -394,5 +397,25 @@ function getNeeded(test) {
     else {
         var sAvg = goalAvg - (weightedAvgArr[gNums[0]] + weightedAvgArr[gNums[1]]);
         createArr(findPercentage(ugNums[0]), findPercentage(ugNums[1]), sAvg);
+    }
+}
+
+function getUgNum() {
+    var ugNums = [];
+    var gNums = [];
+    var tx = 0;
+    var tt = 0;
+    for (let i = 0; i < ugTotalArr.length; i++) {
+        if (ugTotalArr[i] > 0) {
+            ugNums[tx] = i;
+            tx++;
+        }
+        else {
+            gNums[tt] = i;
+            tt++;
+        }
+    }
+    if (ugNums.length == 1) {
+        return ugNums[0];
     }
 }
