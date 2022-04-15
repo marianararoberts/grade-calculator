@@ -60,7 +60,7 @@ function validate() {
         weightedCategoriesDiv.style = "";
         instructions.style = "";
         for (var i = 0; i < elements.length; i++) {
-            elements[i].style.flexGrow = "0.2433";
+            elements[i].style.flexGrow = "0.234";
         }
         // give option to add assignments and weighting
     } else {
@@ -194,30 +194,31 @@ btn2.addEventListener("click", function () {
                 var newAvg = 0;
                 var perTotal = 0;
                 for (let i = 0; i < assignmentTotal.length; i++) {
-                    avgArr[i] = (assignmentEarned[i] / assignmentTotal[i]) * 100;
+                    var num = roundFunc2(assignmentEarned[i] / assignmentTotal[i]);
+                    avgArr[i] = num * 100;
+                    console.log(avgArr[i]);
                 }
                 for (let i = 0; i < avgArr.length; i++) {
-                    weightedAvgArr[i] = Number((avgArr[i] * assignmentPercentages[i]).toFixed(1));
+                    weightedAvgArr[i] = Math.round(Number((avgArr[i] * assignmentPercentages[i])) * 10) / 10;
                     if (!Number.isNaN(weightedAvgArr[i])) {
                         newAvg += weightedAvgArr[i];
                         perTotal += assignmentPercentages[i];
                     }
                 }
                 console.log(weightedAvgArr);
-                console.log(assignmentPercentages);
-                avg = (newAvg / perTotal).toFixed(1);
+                avg = Math.round(Number((newAvg / perTotal)) * 10) / 10;
             }
             else {
                 gEarned += parseInt(earnedBox.value);
                 gTotal += parseInt(totalBox.value);
-                avg = ((gEarned / gTotal) * 100).toFixed(1);
+                avg = Math.round(Number((gEarned / gTotal) * 100) * 10) / 10;
             }
             var valElm = document.createElement("h2");
             var percentElm = document.createElement("h2");
             valElm.classList.add("small");
             percentElm.classList.add("small");
             var textElm = document.createTextNode(earnedBox.value + "/" + totalBox.value);
-            var percent = document.createTextNode(((earnedBox.value / totalBox.value) * 100).toFixed(1) + "%");
+            var percent = document.createTextNode(Math.round(Number((earnedBox.value / totalBox.value) * 100) * 10) / 10 + "%");
             valElm.appendChild(textElm);
             percentElm.appendChild(percent);
             gradedVal.appendChild(valElm);
@@ -236,14 +237,33 @@ function findPercentage(x, y) {
     return average;
 }
 
+function roundFunc1(x) {
+    return Math.round((x) * 10) / 10;
+}
+
+function roundFunc2(x) {
+    return Math.round((x) * 100) / 100;
+}
+
+function roundFunc3(x) {
+    return Math.round((x) * 1000) / 1000;
+}
+
 function findPoints(x, y) {
-    var goalAvg = (y/assignmentPercentages[x])/100;
+    var goalAvg = roundFunc3(roundFunc2(y / assignmentPercentages[x]) / 100)
     var earned = assignmentEarned[x];
     var total = assignmentTotal[x] + ugTotalArr[x];
-    var points = goalAvg*total;
-    console.log(points);
-    console.log(earned);
-    return points-earned;
+    var points = (goalAvg * total).toFixed(1);
+    var neededPoints = roundFunc1(points - earned);
+    // rounding to the 3rd is too exact sometimes, make it round to whatever place goalAvg is roaded to
+    if (roundFunc3((Number(neededPoints) + Number(earned)) / Number(total)) == goalAvg)
+        console.log(neededPoints + ": Needed Points");
+    console.log(goalAvg + ": Goal Average");
+    console.log(points + ": Goal Points");
+    console.log(earned + ": Earned Points");
+    console.log(total + ": Final Total Points");
+    console.log((Number(neededPoints) + Number(earned)) + ": Needed+Earned");
+    console.log(roundFunc2((Number(neededPoints) + Number(earned)) / Number(total)) + ": Actual Average");
 }
 
 nextBtn.addEventListener("click", function () {
