@@ -51,6 +51,7 @@ var assignmentCategories = [];
 var assignmentPercentages = [];
 var assignmentEarned = [];
 var assignmentTotal = [];
+var ugTotalArr = [];
 var avgArr = [];
 var weightedAvgArr = [];
 var divElm = document.createElement("div");
@@ -111,6 +112,7 @@ btn.addEventListener("click", function () {
                 categoriesDropDown.appendChild(newCat);
                 assignmentEarned.push(0);
                 assignmentTotal.push(0);
+                ugTotalArr.push(0);
             }
             weightedColumn.style = "";
             weightedColumn2.style = "";
@@ -171,6 +173,7 @@ btn2.addEventListener("click", function () {
                 var weightedTextElm = document.createTextNode(assignmentCategories[selectedCat]);
                 weightedElm.appendChild(weightedTextElm);
                 weightedType2.appendChild(weightedElm);
+                ugTotalArr[selectedCat] += parseInt(totalBox.value);
             }
             ugTotal += parseInt(totalBox.value);
             var pointElm = document.createElement("h2");
@@ -194,12 +197,14 @@ btn2.addEventListener("click", function () {
                     avgArr[i] = (assignmentEarned[i] / assignmentTotal[i]) * 100;
                 }
                 for (let i = 0; i < avgArr.length; i++) {
-                    weightedAvgArr[i] = avgArr[i] * assignmentPercentages[i];
+                    weightedAvgArr[i] = Number((avgArr[i] * assignmentPercentages[i]).toFixed(1));
                     if (!Number.isNaN(weightedAvgArr[i])) {
                         newAvg += weightedAvgArr[i];
                         perTotal += assignmentPercentages[i];
                     }
                 }
+                console.log(weightedAvgArr);
+                console.log(assignmentPercentages);
                 avg = (newAvg / perTotal).toFixed(1);
             }
             else {
@@ -223,6 +228,23 @@ btn2.addEventListener("click", function () {
         }
     }
 });
+
+function findPercentage(x, y) {
+    var total = assignmentTotal[x] + y;
+    var earned = assignmentEarned[x] + y;
+    var average = ((earned / total) * 100) * assignmentPercentages[x];
+    return average;
+}
+
+function findPoints(x, y) {
+    var goalAvg = (y/assignmentPercentages[x])/100;
+    var earned = assignmentEarned[x];
+    var total = assignmentTotal[x] + ugTotalArr[x];
+    var points = goalAvg*total;
+    console.log(points);
+    console.log(earned);
+    return points-earned;
+}
 
 nextBtn.addEventListener("click", function () {
     doneBtn.style = "";
@@ -266,7 +288,13 @@ doneBtn.addEventListener("click", function () {
 
 calcBtn.addEventListener("click", function () {
     // math
-    var ugNeeded = ((percentBox.value / 100) * (gTotal + ugTotal)) - gEarned;
+    var ugNeeded;
+    if (weightedBox.checked) {
+        ugNeeded = 1;
+    }
+    else {
+        ugNeeded = ((percentBox.value / 100) * (gTotal + ugTotal)) - gEarned;
+    }
 
     calcBtn.style = "display: none";
     percent.style = "display: none";
@@ -297,3 +325,22 @@ backBtn.addEventListener("click", function () {
     hideAvg.style = "";
     weightedOptionDiv.style = "";
 });
+
+function findCombos(arr1, arr2, n, m, z) {
+    for (let i = 0; i < n; i++)
+        for (let j = 0; j < m; j++)
+            if ((Number(arr1[i]) + Number(arr2[j])).toFixed(1) == z)
+                console.log(arr1[i] + " + " + arr2[j] + " = " + z);
+}
+
+function createArr(x, y, z) {
+    let arr1 = [];
+    let arr2 = [];
+    for (let i = 1; i <= x; i += 0.01) {
+        arr1.push(i.toFixed(1));
+    }
+    for (let i = 1; i <= y; i += 0.01) {
+        arr2.push(i.toFixed(1));
+    }
+    findCombos(arr1, arr2, arr1.length, arr2.length, z);
+}
