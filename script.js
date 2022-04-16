@@ -47,6 +47,8 @@ var text3;
 var text4;
 var text5;
 var ugTotal = 0;
+var newAvg = 0;
+var perTotal = 0;
 var assignmentCategories = [];
 var assignmentPercentages = [];
 var assignmentEarned = [];
@@ -191,15 +193,15 @@ btn2.addEventListener("click", function () {
                 weightedElm.classList.add("small");
                 weightedElm.appendChild(weightedTextElm);
                 weightedType.appendChild(weightedElm);
-                var newAvg = 0;
-                var perTotal = 0;
+                newAvg = 0;
+                perTotal = 0;
                 for (let i = 0; i < assignmentTotal.length; i++) {
                     var num = roundFunc3(assignmentEarned[i] / assignmentTotal[i]);
+                    console.log(num);
                     avgArr[i] = roundFunc1(num * 100);
-                    console.log(avgArr[i]);
                 }
                 for (let i = 0; i < avgArr.length; i++) {
-                    weightedAvgArr[i] = Math.round(Number((avgArr[i] * assignmentPercentages[i])) * 10) / 10;
+                    weightedAvgArr[i] = Math.round(Number((avgArr[i] * assignmentPercentages[i])) * 100) / 100;
                     if (!Number.isNaN(weightedAvgArr[i])) {
                         newAvg += weightedAvgArr[i];
                         perTotal += assignmentPercentages[i];
@@ -391,7 +393,7 @@ function getNeeded(test) {
         }
     }
     if (ugNums.length == 1) {
-        var sAvg = test - (avg - weightedAvgArr[ugNums[0]]);
+        var sAvg = (roundFunc2(perTotal*(test/100))*100) - (newAvg - weightedAvgArr[ugNums[0]]);
         return findPoints(ugNums[0], sAvg);
     }
     else {
