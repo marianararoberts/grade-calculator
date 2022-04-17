@@ -393,6 +393,8 @@ function getNeeded(test) {
         }
     }
     if (ugNums.length == 1) {
+        // tempTotal: perTotal plus ungraded category
+    
         var sAvg = (roundFunc2(perTotal*(test/100))*100) - (newAvg - weightedAvgArr[ugNums[0]]);
         return findPoints(ugNums[0], sAvg);
     }
